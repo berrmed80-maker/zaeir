@@ -176,7 +176,7 @@ struct WelcomeView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            if let ui = UIImage(named: "marrakech") {
+            if let ui = bundleImage("marrakech") {
                 Image(uiImage: ui).resizable().scaledToFill().ignoresSafeArea()
                 LinearGradient(colors: [.black.opacity(0.75), .black.opacity(0.25)],
                                startPoint: .bottom, endPoint: .top).ignoresSafeArea()
