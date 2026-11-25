@@ -66,6 +66,11 @@ jobs:
           xcrun simctl launch booted com.dalil.maroc
           sleep 8
           xcrun simctl io booted screenshot ../shots/3-home-ar.png
+          xcrun simctl terminate booted com.dalil.maroc || true
+          xcrun simctl spawn booted defaults delete com.dalil.maroc welcomed
+          xcrun simctl launch booted com.dalil.maroc
+          sleep 8
+          xcrun simctl io booted screenshot ../shots/1-welcome.png
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
