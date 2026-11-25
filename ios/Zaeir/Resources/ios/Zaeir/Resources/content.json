@@ -1,0 +1,612 @@
+{
+ "pages": {
+  "Entry & visa": [
+   [
+    "Passport and stay",
+    "Your passport must expire at least 3 months after the day you arrive (UK government advice, gov.uk).",
+    "Do not use a damaged passport: Moroccan authorities have refused entry to some travellers with damaged ones (gov.uk).",
+    "Visa-free tourist stay is up to 90 days for the countries listed by the sources. To stay longer, ask for an extension at a Moroccan police station (gov.uk).",
+    "Get your entry stamp. Some travellers had trouble leaving without one (gov.uk).",
+    "Lost or stolen passport: get a police report (declaration de perte or de vol) from the city where it happened. You need it to leave (gov.uk)."
+   ],
+   [
+    "Customs and health",
+    "Declare foreign currency worth 100,000 dirham or more when you enter or leave (gov.uk).",
+    "The dirham is a closed currency. You cannot easily exchange it abroad (gov.uk).",
+    "A polio vaccination certificate is needed if you arrive from a polio-affected country. See TravelHealthPro for recommended vaccines (gov.uk).",
+    "Do not post passports to or through Morocco. Authorities confiscate them (gov.uk)."
+   ],
+   [
+    "Visa-free list (Wikivoyage)",
+    "Wikivoyage lists these as visa-free: Schengen member states, Algeria, Argentina, Australia, Bahrain, Brazil, Canada, Chile, China, Cote d'Ivoire, Croatia, Republic of Congo, Guinea, Hong Kong, Indonesia, Ireland, Japan, Kuwait, Libya, Macau, Malaysia, Mali, Mexico, New Zealand, Niger, Oman, Peru, Philippines, Qatar, Russia, Saudi Arabia, Senegal, Singapore, South Korea, Tunisia, Turkey, United Arab Emirates, United Kingdom, United States.",
+    "This list can be out of date. If your country is not listed, that does not prove you need a visa. Ask the consulate."
+   ],
+   [
+    "Important",
+    "Rules change and depend on your nationality. The gov.uk page is written for UK passport holders. Always confirm with the Moroccan consulate in your country before you travel.",
+    "Sources: gov.uk/foreign-travel-advice/morocco/entry-requirements (checked Nov 2026) and Wikivoyage Morocco."
+   ]
+  ],
+  "Money": [
+   [
+    "Currency",
+    "The Moroccan dirham (MAD, written Dh or DH) is the only official currency. 1 dirham = 100 centimes.",
+    "Coins: 5c, 10c, 20c, 50c, 1, 2, 5 and 10 dirham. Notes: 20, 50, 100 and 200 dirham.",
+    "Exchange rates as of August 2026 (Wikivoyage): US$1 is about 9.3 dirham, EUR 1 about 10.8, GBP 1 about 12.6. Rates move. Check XE.com or your bank for today's rate.",
+    "Carry small notes. Even hotels often have no change. Keep larger notes separate."
+   ],
+   [
+    "Exchange and ATMs",
+    "By law the rate should be the same at banks and official exchange offices. Note the rate before you go.",
+    "Taking more than 2,000 dirham of local currency out of the country is not allowed for tourists (Wikivoyage), so you cannot buy dirham abroad.",
+    "Changing dirham back to foreign currency is hard. Keep your exchange receipts, change money in the daytime before your flight, and avoid holding lots of dirham at the end.",
+    "ATMs: use ones showing Maestro, Cirrus or Plus. In small towns they may not be refilled at weekends, so take cash on Friday or Saturday morning.",
+    "Some banks charge about 30 dirham per withdrawal, plus your own bank's fee (Wikivoyage, 2024)."
+   ],
+   [
+    "Electricity",
+    "220 V, 50 Hz. Plug: the two-pin Europlug. US and Canadian 110 V devices need to be dual-voltage or use a converter."
+   ],
+   [
+    "Source",
+    "Source: Wikivoyage, Morocco (CC BY-SA), en.wikivoyage.org/wiki/Morocco; gov.uk Morocco entry requirements."
+   ]
+  ],
+  "Getting around": [
+   [
+    "Trains (ONCF)",
+    "Trains are usually the best option: fast, frequent, comfortable. The network is limited but reaches many tourist cities.",
+    "Al Boraq high-speed train links Tangier, Rabat and Casablanca. Tangier to Casablanca takes about 2 h 20.",
+    "The main line links Marrakech, Casablanca, Rabat, Kenitra, Meknes and Fez. Example fare from Wikivoyage: Casablanca to Marrakech, 146 dirham 2nd class, 180 first, about 2 h 39 (prices change).",
+    "Trains are often late. Buy tickets from ONCF directly. Resellers add a large mark-up.",
+    "Bring water. Air-conditioning does not always work and there are no vending machines."
+   ],
+   [
+    "Buses",
+    "CTM and Supratours are the main comfortable buses. Supratours links the rail network to Essaouira and Atlantic-coast towns.",
+    "Buy tickets at the ticket window inside the bus station, not from touts. Prices and timetables should be displayed.",
+    "CTM charges for luggage officially and gives a receipt. Do not pay extra for bags you keep with you.",
+    "CTM and Supratours often cannot be booked online with a foreign card. Buy at the station."
+   ],
+   [
+    "Taxis",
+    "Petit taxi: only inside the city. It should use a meter. In tourist cities drivers may refuse, so agree the fare first.",
+    "Grand taxi: shared taxi between towns on a fixed route, up to 6 passengers. Fares are shared equally. Ask other passengers what they pay.",
+    "Apps: Careem, Heetch, Roby and InDrive work. Uber stopped in 2018 (Wikivoyage, updated May 2024)."
+   ],
+   [
+    "Other",
+    "Casablanca tram: 30 km, 49 stops, ticket 6 dirham, buy before boarding.",
+    "Domestic flights: Royal Air Maroc, Air Arabia and, since 2024, Ryanair on some routes.",
+    "Driving: main roads are good but share space with bikes, pedestrians and carts. Any alcohol while driving is illegal.",
+    "Weego app gives routes and timetables in several cities, including Casablanca, Rabat, Marrakech, Tangier and Agadir."
+   ],
+   [
+    "Source",
+    "Source: Wikivoyage, Morocco (CC BY-SA), en.wikivoyage.org/wiki/Morocco"
+   ]
+  ],
+  "Etiquette": [
+   [
+    "Greetings and manners",
+    "Greet with Salaam Alaykum (peace upon you). A handshake is safest with the opposite gender. Touching your heart after a handshake shows sincerity.",
+    "Use your right hand to shake hands or give and take things. The left hand is considered unclean.",
+    "Moroccans often speak indirectly to avoid saying anything negative. Do not beckon someone with a finger. It is considered impolite.",
+    "Respect elders. Give up your seat on public transport.",
+    "Mint tea is offered often. Accepting is polite. Say 'saha' before drinking."
+   ],
+   [
+    "Dress",
+    "Dress conservatively in public. Men: long trousers and sleeved shirts are advisable. Women: avoid low-cut tops, bare midriffs and shorts.",
+    "In hotels and beach clubs, swimwear is fine.",
+    "For a mosque, dress conservatively and remove your shoes where required. Many mosques are closed to non-Muslims, so ask."
+   ],
+   [
+    "Ramadan",
+    "Ramadan is the holiest month. Non-Muslims are not required to fast, but should not eat, drink or smoke in public during the day. Many restaurants close at lunch, except those serving tourists.",
+    "Eid al-Fitr at the end of Ramadan: almost everything can close for up to a week and transport is packed.",
+    "Dates follow the Islamic calendar and move about 10 to 11 days earlier each year."
+   ],
+   [
+    "Other",
+    "Public displays of affection are not socially accepted and people can be arrested for them (Wikivoyage).",
+    "Ask before photographing people. Do not photograph military or government buildings.",
+    "Women travelling alone should expect catcalls and hissing. Seek families, busy shops or other women if someone persists.",
+    "Hashish and kif are illegal even if widely tolerated. Drugs are a risk for tourists."
+   ],
+   [
+    "Source",
+    "Source: Wikivoyage, Morocco (CC BY-SA), en.wikivoyage.org/wiki/Morocco (Culture, Respect). Photography advice: Wikivoyage Respect."
+   ]
+  ],
+  "Food": [
+   [
+    "Dishes",
+    "Tagine: a stew cooked in a clay pot. Common: kefta (meatballs with egg), chicken with preserved lemon, lamb with prunes and almonds, vegetables, fish on the coast.",
+    "Couscous: steamed semolina with meat and vegetables. Real couscous takes hours and is often served on Fridays. Restaurants that serve it daily may use instant couscous (Wikivoyage).",
+    "Bissara: thick split-pea soup with olive oil, sold in medinas in the morning.",
+    "Msemen: square flaky pancakes sold on the street, with eggs, cheese, or honey and jam.",
+    "Khlea (kaliya): meat preserved in fat, intense and fatty. For the adventurous.",
+    "Cheap stews: loubia (white beans), adassa (lentils), ker ain (sheep foot with chickpeas)."
+   ],
+   [
+    "Drinks",
+    "Mint tea is green tea with mint and plenty of sugar. You will be offered it daily. Sometimes it is a lure into a shop, but accepting is polite.",
+    "Fresh orange juice is sold everywhere. Alcohol is available in some restaurants, bars and licensed shops, but not widely."
+   ],
+   [
+    "Tips",
+    "Vegetarians: vegetable tagines are easy to find but may be cooked in lamb stock. Ask. Street food is more varied.",
+    "Breakfast deals with a drink, juice and bread or croissant start from about 10 dirham (Wikivoyage, prices change).",
+    "Moroccans eat home dishes at home, so restaurants often serve a short list of standard dishes."
+   ],
+   [
+    "Source",
+    "Source: Wikivoyage, Morocco (CC BY-SA), en.wikivoyage.org/wiki/Morocco (Eat, Drink)."
+   ]
+  ],
+  "Holidays": [
+   [
+    "Fixed dates",
+    "1 January: New Year's Day",
+    "11 January: Proclamation of Independence Day",
+    "14 January: Amazigh New Year (Yennayer)",
+    "1 May: Labour Day",
+    "30 July: Throne Day",
+    "14 August: Oued Ed-Dahab Day",
+    "20 August: Revolution Day",
+    "21 August: Youth Day",
+    "31 October: Unity Day",
+    "6 November: Green March Day",
+    "18 November: Independence Day"
+   ],
+   [
+    "Islamic dates (move every year)",
+    "Islamic New Year: 1 Muharram",
+    "The Prophet's Birthday (Mawlid): 12 Rabi al-awwal",
+    "Eid al-Fitr: 1 Shawwal, after Ramadan",
+    "Eid al-Adha: 10 Dhu al-Hijjah",
+    "Exact days depend on moon sighting. Check locally before you travel."
+   ],
+   [
+    "Travel effect",
+    "Banks, shops and offices close on public holidays. Around Eid al-Fitr and Eid al-Adha transport is very busy. During Ramadan hours are shorter."
+   ],
+   [
+    "Source",
+    "Wikipedia, Public holidays in Morocco (page dated Nov 2026); Wikivoyage Morocco (Holidays). List may change, confirm for your travel dates."
+   ]
+  ],
+  "Safety": [
+   [
+    "Crime and scams",
+    "Petty crime is common in tourist areas, especially in medina quarters and on beaches: pickpocketing, bag snatching and theft of visible jewellery and handbags (gov.uk).",
+    "Avoid quiet areas after dark and do not carry large amounts of money or valuables (gov.uk).",
+    "Be careful when asking for directions and when using ATMs. Aggressive begging is common (gov.uk).",
+    "People posing as official guides often approach tourists. In a medina, use a guide with an official badge (gov.uk).",
+    "Beware of sellers who swap the goods you bought for cheaper ones (gov.uk)."
+   ],
+   [
+    "Other risks",
+    "gov.uk says terrorists are likely to try to carry out attacks in Morocco, including in tourist places and transport hubs. Stay aware of your surroundings and follow the local authorities.",
+    "Protests can happen without warning, mostly in large cities. Avoid political gatherings (gov.uk).",
+    "There have been deaths from alcoholic drinks containing methanol. You cannot tell by taste or smell (gov.uk).",
+    "Emergency numbers are on the Emergency page."
+   ],
+   [
+    "Source",
+    "Source: UK government travel advice for Morocco, Safety and security (gov.uk, checked 24 Nov 2026). Other governments may give different advice. Check the advice from your own country too."
+   ]
+  ],
+  "Laws to know": [
+   [
+    "Alcohol and drugs",
+    "Alcohol is sold in licensed venues. Drinking in the street or anywhere that is not licensed is illegal and can lead to arrest (gov.uk).",
+    "Morocco has zero tolerance for drugs. Possessing, using or selling illegal drugs, including cannabis, brings long jail sentences and heavy fines (gov.uk).",
+    "Do not accept items from strangers and do not leave your bags unattended (gov.uk)."
+   ],
+   [
+    "Religion and relationships",
+    "Same-sex sexual relations are illegal. Showing affection in public can lead to prosecution (gov.uk).",
+    "Sex between unmarried people and adultery are illegal for Moroccan nationals. The rule about sharing a hotel room does not generally apply to visiting foreigners, particularly in popular tourist areas, but avoid showing affection in public (gov.uk).",
+    "It is illegal to try to convert a Muslim to another faith or to hand out religious literature. Public criticism of Islam can bring heavy fines and prison (gov.uk).",
+    "Dating apps may break the laws on sexual relations and carry legal and personal safety risks (gov.uk)."
+   ],
+   [
+    "Source",
+    "Source: UK government travel advice for Morocco, Safety and security (gov.uk, checked 24 Nov 2026). Laws can change."
+   ]
+  ],
+  "Women travellers": [
+   [
+    "Advice",
+    "Women may get unwanted attention in Morocco, especially when travelling alone (gov.uk).",
+    "Consider loose clothes that cover the arms, legs and chest (gov.uk).",
+    "Street harassment is described as common in big cities such as Fes and Casablanca. Smaller towns such as Chefchaouen, and tourist-used places such as Marrakech, are described as more relaxed (Rough Guides).",
+    "Be careful with strangers who show strong romantic interest (Wikivoyage).",
+    "Be careful if you travel to meet someone you met online. Marriage fraud and extortion cases have been reported. Keep your return ticket, passport and belongings safe (gov.uk)."
+   ],
+   [
+    "Source",
+    "Sources: gov.uk (Morocco travel advice), Rough Guides (Morocco travel tips), Wikivoyage Morocco. Checked 24 Nov 2026. Experiences differ from person to person."
+   ]
+  ],
+  "Ramadan": [
+   [
+    "What to expect",
+    "Ramadan is a holy month for Muslims. The dates change every year. gov.uk says the next one starts in February 2027. Confirm the exact dates closer to the time.",
+    "In the daytime, eating, drinking, smoking, swearing or chewing gum in public may cause offence (gov.uk).",
+    "Check opening hours of shops and restaurants (gov.uk).",
+    "Hotels and restaurants that serve food during fasting hours may separate you from Muslim guests, for example with screens (gov.uk).",
+    "Follow local dress codes. Clothing that does not meet them may cause more offence at this time (gov.uk).",
+    "People may be tired in the late afternoon and early evening. Be patient. Driving can be erratic near sunset (gov.uk)."
+   ],
+   [
+    "Source",
+    "Source: UK government travel advice for Morocco, Safety and security (gov.uk, checked 24 Nov 2026)."
+   ]
+  ],
+  "SIM and internet": [
+   [
+    "Phone and data",
+    "Your home phone may work, but roaming can be expensive unless your plan includes international data. Check your provider's travel add-ons before you fly (Lonely Planet).",
+    "The three mobile networks are Maroc Telecom, Orange and Inwi (Orange travel page). Prices are not included here because they change.",
+    "An eSIM needs an internet connection to install. Do it on Wi-Fi before your trip or when you arrive (Orange travel page).",
+    "No network covers every deep valley, mountain and desert area (aboutmorocco.com). This app works offline."
+   ],
+   [
+    "Source",
+    "Sources: lonelyplanet.com (Get connected in Morocco), travel.orange.com (Morocco offers), aboutmorocco.com (telecommunications providers). Checked 24 Nov 2026. Check prices and conditions with the operator."
+   ]
+  ],
+  "Power and water": [
+   [
+    "Electricity",
+    "Voltage is generally 220 V (partly 127 V), 50 Hz. Sockets take the two-pin Europlug (Wikivoyage).",
+    "The plug is ungrounded and made for at most 2.5 A (Wikivoyage).",
+    "Devices made for 110 V (American and Canadian) can be damaged unless they are dual-voltage. You would need a converter and an adapter (Wikivoyage)."
+   ],
+   [
+    "Water",
+    "Do not drink tap water. Bottled water is cheap (see the Tips page)."
+   ],
+   [
+    "Source",
+    "Source: Wikivoyage Morocco (CC BY-SA), checked 24 Nov 2026."
+   ]
+  ]
+ },
+ "emergency": [
+  [
+   "Police (cities)",
+   "19",
+   "Dial 19 from a landline. 190 is listed for mobiles by the UK government."
+  ],
+  [
+   "Police (mobile)",
+   "190",
+   "Listed by the UK government (FCDO)."
+  ],
+  [
+   "Royal Gendarmerie (outside cities)",
+   "177",
+   "Same number in both the French and UK government lists."
+  ],
+  [
+   "Fire and rescue",
+   "15",
+   "French government list. The UK list gives 150 for both ambulance and fire."
+  ],
+  [
+   "Ambulance (alternative)",
+   "150",
+   "UK government list. Sources differ, so try 15 if 150 does not connect."
+  ]
+ ],
+ "welcome": [
+  "Plan trips day by day",
+  "Sights, stays and food",
+  "Scam alerts and local tips",
+  "Works with no internet"
+ ],
+ "activities": [
+  [
+   "Trek in the High Atlas",
+   "Climb Jebel Toubkal, North Africa's highest peak, from Imlil, or walk the Ourika, Amizmiz and Ameln valleys.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Camel ride and desert night",
+   "Ride through the Erg Chebbi dunes near Merzouga and sleep in a desert tent. Erg Chigaga near M'hamid is harder to reach and quieter.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Hammam (steam bath)",
+   "Two kinds: tourist hammams (pampering, scrub by staff) and popular hammams used by locals (bring a scrub mitt and towel). Wikivoyage lists about 150 MAD for a tourist hammam, 7-15 MAD entry for a popular one. Those prices are older, confirm locally.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Stargazing",
+   "Sahara dunes and the High Atlas have very dark skies. Best from October to April.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Multi-day tours from Marrakech",
+   "Marrakech is a base for High Atlas trips, camel and quad rides and 1 to 4 day Sahara treks. Compare providers and agree the price first.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Football match",
+   "The national team and the Botola league clubs play across the country, August to May.",
+   "Wikivoyage Morocco",
+   "wv"
+  ],
+  [
+   "Surfing and kitesurfing",
+   "Atlantic coast spots such as Taghazout, Essaouira and Dakhla are known for it. Check season and schools locally.",
+   "Author knowledge, not checked against a source",
+   "au"
+  ],
+  [
+   "Cooking class and food tours",
+   "Offered in Marrakech, Fes and other big cities. Check reviews and what is included.",
+   "Author knowledge, not checked against a source",
+   "au"
+  ],
+  [
+   "Waterfalls and valleys",
+   "Ouzoud falls and the Ourika Valley are classic day trips from Marrakech.",
+   "Marrakech page, Wikivoyage",
+   "wv"
+  ]
+ ],
+ "firstDay": [
+  "Check that your passport has the entry stamp (gov.uk).",
+  "Get some dirham from a bank, an official exchange office or an ATM. Airport exchange desks can be closed very early or late (Wikivoyage).",
+  "Before you put a foreign card in an ATM, check for the Maestro, Cirrus or Plus logo. Some banks charge about 30 dirham (Wikivoyage, 2024).",
+  "Keep small notes and coins. Hotels and taxis often have no change.",
+  "Get data: an eSIM or a local SIM (see the SIM and internet page).",
+  "Take a petit taxi with the meter on. If the driver refuses, wait for another or agree the full price first.",
+  "Save the emergency numbers (see the Emergency page).",
+  "Keep valuables hidden and watch for fake guides and the street is closed trick (see the Scams page)."
+ ],
+ "quiz": [
+  [
+   "What is the currency of Morocco?",
+   "Dirham",
+   "Euro",
+   "Dinar",
+   "Rial",
+   "0",
+   "The Moroccan dirham (MAD) is the only official currency."
+  ],
+  [
+   "How many centimes are in 1 dirham?",
+   "10",
+   "50",
+   "100",
+   "1000",
+   "2",
+   "1 dirham = 100 centimes."
+  ],
+  [
+   "In which city is the Hassan II Mosque?",
+   "Rabat",
+   "Fes",
+   "Casablanca",
+   "Tangier",
+   "2",
+   "The Hassan II Mosque guided visit is in Casablanca."
+  ],
+  [
+   "The Djemaa El-Fna square is in which city?",
+   "Fes",
+   "Marrakech",
+   "Meknes",
+   "Agadir",
+   "1",
+   "Djemaa El-Fna is the main square of Marrakech."
+  ],
+  [
+   "Which is the highest peak in North Africa?",
+   "Jebel Toubkal",
+   "Mount Kenya",
+   "Mount Kilimanjaro",
+   "Mount Sinai",
+   "0",
+   "Jebel Toubkal, in the High Atlas, near Imlil."
+  ],
+  [
+   "Which high-speed train links Tangier and Casablanca?",
+   "Al Boraq",
+   "Eurostar",
+   "TGV",
+   "Pendolino",
+   "0",
+   "Al Boraq runs between Tangier and Casablanca."
+  ],
+  [
+   "Which dunes are near Merzouga?",
+   "Erg Chebbi",
+   "Erg Chigaga",
+   "Dunes of Namib",
+   "White Sands",
+   "0",
+   "The Erg Chebbi dunes are near Merzouga."
+  ],
+  [
+   "What must petit taxis use in the city?",
+   "The meter",
+   "A fixed price",
+   "A map",
+   "A ticket",
+   "0",
+   "Petit taxis must use the meter."
+  ],
+  [
+   "Which Roman ruins are near Meknes?",
+   "Volubilis",
+   "Carthage",
+   "Leptis Magna",
+   "Petra",
+   "0",
+   "Volubilis is a Roman city near Meknes."
+  ],
+  [
+   "Which Atlantic port city is famous for pottery?",
+   "Safi",
+   "Dakhla",
+   "Oujda",
+   "Errachidia",
+   "0",
+   "Safi is known for its pottery."
+  ],
+  [
+   "Which village is the base for climbing Toubkal?",
+   "Imlil",
+   "Ouarzazate",
+   "Tinghir",
+   "Ifrane",
+   "0",
+   "Imlil, about 1.5 hours from Marrakech."
+  ],
+  [
+   "What is the traditional Friday lunch in many restaurants?",
+   "Couscous",
+   "Pizza",
+   "Pastilla",
+   "Harira",
+   "0",
+   "Friday lunch is traditionally couscous."
+  ],
+  [
+   "Where should you buy bus tickets in a station?",
+   "At the official ticket window",
+   "From the first person who offers",
+   "On the bus only",
+   "Online only",
+   "0",
+   "Buy at the official window, not from touts."
+  ]
+ ],
+ "packing": [
+  "Passport and a copy",
+  "Travel insurance details",
+  "Cash in small MAD notes and coins",
+  "Reusable water bottle (do not drink tap water)",
+  "Layers: desert nights and Atlas mountains are cold",
+  "Modest clothes for mosques and small towns",
+  "Comfortable walking shoes for medina cobbles",
+  "Sun hat, sunscreen, sunglasses",
+  "Phone charger and plug adapter (type C/E)",
+  "Offline copy of your bookings",
+  "Small gifts or sweets if visiting a family"
+ ],
+ "itineraries": [
+  [
+   "Imperial cities, 7 days",
+   "casablanca,rabat,meknes,fes,marrakech"
+  ],
+  [
+   "Desert and Atlas, 6 days",
+   "marrakech,ait-benhaddou,ouarzazate,merzouga"
+  ],
+  [
+   "Atlantic coast, 5 days",
+   "tangier,asilah,rabat,essaouira,agadir"
+  ],
+  [
+   "North and blue city, 4 days",
+   "tangier,tetouan,chefchaouen"
+  ]
+ ],
+ "unesco": [
+  [
+   "Medina of Fez",
+   "Fes-Meknes",
+   "1981",
+   "fes"
+  ],
+  [
+   "Medina of Marrakesh",
+   "Marrakesh-Safi",
+   "1985",
+   "marrakech"
+  ],
+  [
+   "Ksar of Ait-Ben-Haddou",
+   "Draa-Tafilalet",
+   "1987",
+   "ait-benhaddou"
+  ],
+  [
+   "Historic City of Meknes",
+   "Fes-Meknes",
+   "1996",
+   "meknes"
+  ],
+  [
+   "Archaeological site of Volubilis",
+   "Fes-Meknes",
+   "1997",
+   ""
+  ],
+  [
+   "Medina of Tetouan",
+   "Tanger-Tetouan-Al Hoceima",
+   "1997",
+   "tetouan"
+  ],
+  [
+   "Medina of Essaouira",
+   "Marrakesh-Safi",
+   "2001",
+   "essaouira"
+  ],
+  [
+   "Portuguese City of Mazagan (El Jadida)",
+   "Casablanca-Settat",
+   "2004",
+   "el-jadida"
+  ],
+  [
+   "Rabat, Modern Capital and Historic City",
+   "Rabat-Sale-Kenitra",
+   "2012",
+   "rabat"
+  ]
+ ],
+ "routes": [
+  [
+   "tangier",
+   "casablanca",
+   "Al Boraq high-speed train: about 2 h 20 (Wikivoyage)."
+  ],
+  [
+   "casablanca",
+   "marrakech",
+   "Train: about 2 h 39. About 146 dirham in 2nd class and 180 in 1st (Wikivoyage, older price)."
+  ],
+  [
+   "fes",
+   "tangier",
+   "Train: about 5 hours (Wikivoyage). Trains are often delayed."
+  ],
+  [
+   "marrakech",
+   "tangier",
+   "Night trains have couchettes for about 100 dirham extra (Wikivoyage, older price)."
+  ]
+ ],
+ "homeCards": [
+  "Emergency",
+  "Activities",
+  "Itineraries",
+  "Packing"
+ ]
+}
