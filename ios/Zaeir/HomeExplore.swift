@@ -9,6 +9,12 @@ struct CityRow: View {
     let city: City
     var hit: String = ""
 
+    private var metaLine: String {
+        var s = tr(city.region) + " \u{00B7} " + tf("%d days", city.days) + " \u{00B7} " + tf("%d places", city.sights.count)
+        if !hit.isEmpty { s += " \u{00B7} " + hit }
+        return s
+    }
+
     var body: some View {
         HStack(spacing: 0) {
             CityImage(id: city.id)
@@ -28,7 +34,7 @@ struct CityRow: View {
                     .font(.system(size: 13))
                     .foregroundColor(.zGrey)
                     .lineLimit(2)
-                Text(tr(city.region) + " \u{00B7} " + tf("%d days", city.days) + " \u{00B7} " + tf("%d places", city.sights.count) + (hit.isEmpty ? "" : " \u{00B7} " + hit))
+                Text(metaLine)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.zGreen)
                     .lineLimit(1)
