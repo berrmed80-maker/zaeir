@@ -38,10 +38,42 @@ jobs:
           mkdir -p out/Payload
           cp -R ios/build/Build/Products/Release-iphoneos/Zaeir.app out/Payload/
           cd out && zip -r ../zaeir-ios-unsigned.ipa Payload
+      - name: Simulator smoke test
+        run: |
+          cd ios
+          xcodebuild -project Zaeir.xcodeproj -scheme Zaeir -configuration Debug -sdk iphonesimulator -derivedDataPath build-sim CODE_SIGNING_ALLOWED=NO build
+          DEV=$(xcrun simctl list devices available -j | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)['devices']
+          devs=[x for rt in d.values() for x in rt if x.get('isAvailable') and 'iPhone' in x['name']]
+          devs.sort(key=lambda x: x['name'])
+          print(devs[-1]['udid'])")
+          echo "simulator: $DEV"
+          xcrun simctl boot "$DEV" || true
+          sleep 5
+          xcrun simctl install booted build-sim/Build/Products/Debug-iphonesimulator/Zaeir.app
+          mkdir -p ../shots
+          xcrun simctl launch booted com.dalil.maroc
+          sleep 8
+          xcrun simctl io booted screenshot ../shots/1-welcome.png
+          xcrun simctl terminate booted com.dalil.maroc || true
+          xcrun simctl spawn booted defaults write com.dalil.maroc welcomed -bool true
+          xcrun simctl launch booted com.dalil.maroc
+          sleep 8
+          xcrun simctl io booted screenshot ../shots/2-home.png
+          xcrun simctl terminate booted com.dalil.maroc || true
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
+          xcrun simctl launch booted com.dalil.maroc
+          sleep 8
+          xcrun simctl io booted screenshot ../shots/3-home-ar.png
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
           path: zaeir-ios-unsigned.ipa
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zaeir-ios-simulator-screenshots
+          path: shots/*.png
       - name: Publish unsigned IPA to a release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,3 +83,4 @@ jobs:
             --title "Zaeir iOS - unsigned compile-only build" \
             --notes "Unsigned IPA built by CI. Compile-only: never run on a device. To install: sideload with Sideloadly/AltStore using a free Apple ID (7-day expiry). Not signed, not App Store ready." \
             --latest=false
+          gh release upload ios-dev shots/1-welcome.png shots/2-home.png shots/3-home-ar.png --clobber
