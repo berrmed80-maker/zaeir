@@ -6,6 +6,9 @@ on:
       - '.github/workflows/ios.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: macos-15-intel
@@ -39,3 +42,12 @@ jobs:
         with:
           name: zaeir-ios-unsigned-ipa
           path: zaeir-ios-unsigned.ipa
+      - name: Publish unsigned IPA to a release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete ios-dev --yes --cleanup-tag 2>/dev/null || true
+          gh release create ios-dev zaeir-ios-unsigned.ipa \
+            --title "Zaeir iOS - unsigned compile-only build" \
+            --notes "Unsigned IPA built by CI. Compile-only: never run on a device. To install: sideload with Sideloadly/AltStore using a free Apple ID (7-day expiry). Not signed, not App Store ready." \
+            --latest=false
