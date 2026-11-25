@@ -105,6 +105,11 @@ enum DB {
 
 import SwiftUI
 
+func bundleImage(_ id: String) -> UIImage? {
+    guard let url = Bundle.main.url(forResource: id, withExtension: "jpg") else { return nil }
+    return UIImage(contentsOfFile: url.path)
+}
+
 struct Hero: View {
     let title: String
     var subtitle: String = ""
@@ -113,7 +118,7 @@ struct Hero: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            if let imageId = imageId, let ui = UIImage(named: imageId) {
+            if let imageId = imageId, let ui = bundleImage(imageId) {
                 Image(uiImage: ui)
                     .resizable()
                     .scaledToFill()
@@ -203,7 +208,7 @@ struct Chip: View {
 struct CityImage: View {
     let id: String
     var body: some View {
-        if let ui = UIImage(named: id) {
+        if let ui = bundleImage(id) {
             Image(uiImage: ui).resizable().scaledToFill()
         } else {
             LinearGradient(colors: [.zGreen, .zGold], startPoint: .topLeading, endPoint: .bottomTrailing)
