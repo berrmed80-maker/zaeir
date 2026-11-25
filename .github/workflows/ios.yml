@@ -1,0 +1,41 @@
+name: iOS build
+on:
+  push:
+    paths:
+      - 'ios/**'
+      - '.github/workflows/ios.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode bundled assets
+        run: |
+          mkdir -p ios/Zaeir/img
+          for base in $(ls ios/b64 | sed 's/\.b64\.[0-9]*$//' | sort -u); do
+            if [ "$base" = "icon-1024.png" ]; then
+              cat ios/b64/icon-1024.png.b64.* | base64 -d > "ios/Zaeir/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
+            else
+              cat ios/b64/$base.b64.* | base64 -d > "ios/Zaeir/img/$base.jpg"
+            fi
+          done
+          ls ios/Zaeir/img | wc -l
+      - name: Install xcodegen
+        run: brew install xcodegen
+      - name: Generate project
+        run: cd ios && xcodegen
+      - name: Build (unsigned)
+        run: |
+          cd ios
+          xcodebuild -project Zaeir.xcodeproj -scheme Zaeir -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p out/Payload
+          cp -R ios/build/Build/Products/Release-iphoneos/Zaeir.app out/Payload/
+          cd out && zip -r ../zaeir-ios-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zaeir-ios-unsigned-ipa
+          path: zaeir-ios-unsigned.ipa
