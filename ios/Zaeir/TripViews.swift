@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreLocation
 
 // MARK: - Trip tab
 
@@ -127,6 +128,7 @@ struct TripView: View {
 
     private var toolsCards: some View {
         let tools: [(String, String, AnyView)] = [
+            ("Between cities", "arrow.left.and.right", AnyView(BetweenView())),
             ("Currency converter", "banknote", AnyView(ConverterView())),
             ("Quiz", "questionmark.circle", AnyView(QuizView())),
             ("Trip notes", "note.text", AnyView(NotesView())),
@@ -158,8 +160,22 @@ struct TripView: View {
 // MARK: - Itinerary detail
 
 struct ItineraryView: View {
+    @EnvironmentObject var store: Store
     let title: String
     let ids: [String]
+
+    private func addTopSights() {
+        for id in ids {
+            guard let c = store.city(id) else { continue }
+            var added = 0
+            for pr in 1...3 where added < 2 {
+                for sg in c.sights where sg.p == pr && added < 2 {
+                    let item = TripItem(cityId: id, sight: sg.n)
+                    if !store.inTrip(item) { store.toggleTrip(item); added += 1 }
+                }
+            }
+        }
+    }
 
     var body: some View {
         ScrollView {
@@ -192,11 +208,139 @@ struct ItineraryView: View {
                         .buttonStyle(.plain)
                     }
                 }
+                Button {
+                    addTopSights()
+                } label: {
+                    Text(tr("Add to my trip"))
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 12)
+                        .background(Color.zTerra)
+                        .clipShape(Capsule())
+                }
+                .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
             }
             .padding(.vertical, 12)
         }
         .background(Color.zBG.ignoresSafeArea())
         .navigationTitle(tr("Itineraries"))
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// MARK: - Between cities
+
+struct BetweenView: View {
+    @EnvironmentObject var store: Store
+    @State private var from = "marrakech"
+    @State private var to = "fes"
+
+    private var distanceKm: Int? {
+        guard let a = store.city(from), let b = store.city(to), from != to else { return nil }
+        let d = CLLocation(latitude: a.lat, longitude: a.lon)
+            .distance(from: CLLocation(latitude: b.lat, longitude: b.lon))
+        return Int((d / 1000).rounded())
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                Hero(title: tr("Between cities"), subtitle: tr("Distance and how to travel"), height: 130)
+                Card {
+                    Text(tr("From"))
+                        .font(.system(size: 12.5, weight: .medium))
+                        .foregroundColor(.zGrey)
+                    Picker(tr("From"), selection: $from) {
+                        ForEach(DB.data.cities) { c in Text(c.name).tag(c.id) }
+                    }
+                    .pickerStyle(.menu)
+                    .tint(.zGreen)
+                    Text(tr("To"))
+                        .font(.system(size: 12.5, weight: .medium))
+                        .foregroundColor(.zGrey)
+                        .padding(.top, 6)
+                    Picker(tr("To"), selection: $to) {
+                        ForEach(DB.data.cities) { c in Text(c.name).tag(c.id) }
+                    }
+                    .pickerStyle(.menu)
+                    .tint(.zGreen)
+                }
+                if let km = distanceKm, let a = store.city(from), let b = store.city(to) {
+                    Card {
+                        Text("\(a.name) - \(b.name)")
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundColor(.zGreen)
+                        Text(tf("About %d km in a straight line. Roads are longer.", km))
+                            .font(.system(size: 14))
+                            .foregroundColor(.zInk)
+                            .padding(.top, 2)
+                    }
+                    ForEach(Array(DB.content.routes.enumerated()), id: \.offset) { _, r in
+                        if r.count >= 3, (r[0] == from && r[1] == to) || (r[1] == from && r[0] == to) {
+                            Card {
+                                Text(tr("Sourced trip info"))
+                                    .font(.system(size: 15, weight: .bold))
+                                    .foregroundColor(.zInk)
+                                Text(tr(r[2]))
+                                    .font(.system(size: 13.5))
+                                    .foregroundColor(.zGrey)
+                                    .padding(.top, 2)
+                            }
+                        }
+                    }
+                    Card {
+                        Text(tr("Train"))
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.zInk)
+                        Text(tr("Trains are usually the best option between big cities. Buy tickets only on the official ONCF site, not on resellers that add a mark-up (Wikivoyage). Times and prices change."))
+                            .font(.system(size: 13.5))
+                            .foregroundColor(.zGrey)
+                            .padding(.top, 2)
+                        Link(destination: URL(string: "https://www.oncf-voyages.ma")!) {
+                            Text(tr("ONCF tickets"))
+                                .font(.system(size: 13.5, weight: .semibold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 18)
+                                .padding(.vertical, 10)
+                                .background(Color.zGreen)
+                                .clipShape(Capsule())
+                        }
+                        .padding(.top, 6)
+                    }
+                    Card {
+                        Text(tr("Bus"))
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.zInk)
+                        Text(tr("CTM and Supratours run intercity buses. Buy at the official ticket window, not from touts. Supratours links the train network to Essaouira and Atlantic coast towns (Wikivoyage)."))
+                            .font(.system(size: 13.5))
+                            .foregroundColor(.zGrey)
+                            .padding(.top, 2)
+                    }
+                    Card {
+                        Text(tr("Getting around in each city"))
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.zInk)
+                        Text("\(a.name): \(tr(a.transport))")
+                            .font(.system(size: 13.5))
+                            .foregroundColor(.zGrey)
+                            .padding(.top, 2)
+                        Text("\(b.name): \(tr(b.transport))")
+                            .font(.system(size: 13.5))
+                            .foregroundColor(.zGrey)
+                            .padding(.top, 2)
+                    }
+                    Text(tr("Live timetables and fares are not in this app. Check on site or on the operator site."))
+                        .font(.system(size: 12))
+                        .foregroundColor(.zGrey)
+                        .padding(.horizontal, 20)
+                }
+            }
+            .padding(.vertical, 12)
+        }
+        .background(Color.zBG.ignoresSafeArea())
+        .navigationTitle(tr("Between cities"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
