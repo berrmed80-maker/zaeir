@@ -332,7 +332,7 @@ public class Main extends Activity{
   TextView lg=tv("Language",12.5f,GREY,"sans-serif-medium");lg.setPadding(0,dp(18),0,dp(6));c.addView(lg);LinearLayout lr=new LinearLayout(this);String[][] ls={{"en","EN"},{"fr","FR"},{"es","ES"},{"ar","AR"}};
   for(final String[] l:ls){boolean on=lang().equals(l[0]);TextView b=head(l[1],14,on?Color.WHITE:GREEN);b.setGravity(Gravity.CENTER);b.setBackground(rect(on?GREEN:PC,16));b.setPadding(0,dp(10),0,dp(10));b.setOnClickListener(new View.OnClickListener(){public void onClick(View v){sp.edit().putString("lang",l[0]).apply();closeDrawer();switchTab(curTab);}});lr.addView(b,lp(0,-2,0,0,6,0));((LinearLayout.LayoutParams)b.getLayoutParams()).weight=1;}
   c.addView(lr);TextView nt=tv("Menus, buttons and city guides are translated (machine translation, not reviewed by a native speaker).",11,GREY,"sans-serif");nt.setPadding(0,dp(6),0,dp(10));c.addView(nt);
-  TextView ver=tv("Zaeir \u00b7 "+tr("Version")+" 6.4",11.5f,GREY,"sans-serif");ver.setPadding(0,dp(14),0,0);c.addView(ver);
+  TextView ver=tv("Zaeir \u00b7 "+tr("Version")+" "+CUR,11.5f,GREY,"sans-serif");ver.setPadding(0,dp(14),0,0);c.addView(ver);
   FrameLayout.LayoutParams pp=new FrameLayout.LayoutParams(dp(290),-1,Gravity.END);drawer.addView(sv,pp);root.addView(drawer,new FrameLayout.LayoutParams(-1,-1));sv.setTranslationX(dp(290));sv.animate().translationX(0).setDuration(240);}
 
  View activities(){LinearLayout r=col();r.addView(hero("Activities","Things tourists can do",new int[]{0xFF1C6E72,0xFF0E3B2E},220,true));
@@ -546,4 +546,4 @@ public class Main extends Activity{
     TextView sm=tv(tf("About %s of sightseeing, without travel time",hm(tot)),12,GREY,"sans-serif");sm.setPadding(0,dp(6),0,0);kk.addView(sm);out.addView(kk);}
    TextView fn=tv("Visit times are estimates from the guide data. Opening hours and travel between places are not included. Check opening hours before you go.",12,GREY,"sans-serif");fn.setPadding(dp(20),dp(8),dp(20),dp(24));out.addView(fn);}catch(Exception e){}}}));return r;}
  Main this_(){return this;}
- }
+                  }
