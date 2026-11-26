@@ -110,8 +110,8 @@ struct CityView: View {
         switch tab {
         case 0: sightsTab
         case 1: stayTab
-        case 2: eatTab
-        case 3: stringsCard(city.scams, icon: "exclamationmark.triangle.fill", tint: .zTerra)
+        case 2: VStack(spacing: 12) { eatTab; DarijaOrderCard() }
+        case 3: VStack(spacing: 12) { stringsCard(city.scams, icon: "exclamationmark.triangle.fill", tint: .zTerra); SafetyExtrasCard(city: city) }
         case 4: stringsCard(city.daytrips, icon: "bus.fill")
         default: mapTab
         }
