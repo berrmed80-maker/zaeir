@@ -5,7 +5,7 @@ import SwiftUI
 struct GuideView: View {
     private let groups: [(String, [(String, String)])] = [
         ("Plan your trip", [
-            ("Entry & visa", "passport"),
+            ("Entry & visa", "globe"),
             ("Money", "banknote"),
             ("Itineraries", "map"),
             ("Packing", "checklist"),
