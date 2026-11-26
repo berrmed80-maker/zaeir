@@ -93,6 +93,19 @@ jobs:
           xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
           xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -int 1
           shot 9-city-stay-ar 12
+          xcrun simctl spawn booted defaults delete com.dalil.maroc debugCity
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string en
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string phrasebook
+          shot 10-phrasebook-en 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
+          shot 10-phrasebook-ar 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string fr
+          xcrun simctl spawn booted defaults write com.dalil.maroc bud_stay -string 400
+          xcrun simctl spawn booted defaults write com.dalil.maroc bud_food -string 150
+          xcrun simctl spawn booted defaults write com.dalil.maroc bud_transport -string 80
+          xcrun simctl spawn booted defaults write com.dalil.maroc bud_activities -string 100
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string budget
+          shot 11-budget-fr 12
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
