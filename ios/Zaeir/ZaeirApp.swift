@@ -180,51 +180,62 @@ struct WelcomeView: View {
     @Binding var show: Bool
     private let icons = ["calendar", "fork.knife", "exclamationmark.shield.fill", "wifi.slash"]
 
-    var body: some View {
-        ZStack {
-            if let ui = bundleImage("marrakech") {
-                Image(uiImage: ui).resizable().scaledToFill().ignoresSafeArea()
-                LinearGradient(colors: [.black.opacity(0.75), .black.opacity(0.25)],
-                               startPoint: .bottom, endPoint: .top).ignoresSafeArea()
-            } else {
-                LinearGradient(colors: [.zDark, .zTerra], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
-            }
-            VStack(alignment: .leading, spacing: 14) {
-                Spacer(minLength: 0)
-                Text(tr("WELCOME TO"))
-                    .font(.system(size: 13, weight: .semibold))
-                    .tracking(3)
-                    .foregroundColor(.white.opacity(0.8))
-                Text("Zaeir")
-                    .font(.system(size: 54, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                Text(tf("An offline guide to %d destinations across Morocco.", DB.data.cities.count))
-                    .font(.body)
-                    .foregroundColor(.white.opacity(0.9))
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(Array(DB.content.welcome.enumerated()), id: \.offset) { i, f in
-                        Label(tr(f), systemImage: icons[min(i, icons.count - 1)])
-                            .font(.system(size: 15, weight: .medium))
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding(.vertical, 8)
-                Button {
-                    UserDefaults.standard.set(true, forKey: "welcomed")
-                    show = false
-                } label: {
-                    Text(tr("Get started"))
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(.zDark)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.white)
-                        .clipShape(Capsule())
-                }
-                .padding(.top, 6)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-            .padding(28)
+    @ViewBuilder private var backdrop: some View {
+        if let ui = bundleImage("marrakech") {
+            Color.black
+                .overlay(
+                    Image(uiImage: ui).resizable().scaledToFill()
+                )
+                .clipped()
+                .overlay(
+                    LinearGradient(colors: [.black.opacity(0.75), .black.opacity(0.25)],
+                                   startPoint: .bottom, endPoint: .top)
+                )
+        } else {
+            LinearGradient(colors: [.zDark, .zTerra], startPoint: .topLeading, endPoint: .bottomTrailing)
         }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Spacer(minLength: 0)
+            Text(tr("WELCOME TO"))
+                .font(.system(size: 13, weight: .semibold))
+                .tracking(3)
+                .foregroundColor(.white.opacity(0.8))
+            Text("Zaeir")
+                .font(.system(size: 54, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+            Text(tf("An offline guide to %d destinations across Morocco.", DB.data.cities.count))
+                .font(.body)
+                .foregroundColor(.white.opacity(0.9))
+                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(Array(DB.content.welcome.enumerated()), id: \.offset) { i, f in
+                    Label(tr(f), systemImage: icons[min(i, icons.count - 1)])
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundColor(.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.vertical, 8)
+            Button {
+                UserDefaults.standard.set(true, forKey: "welcomed")
+                show = false
+            } label: {
+                Text(tr("Get started"))
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(.zDark)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(Color.white)
+                    .clipShape(Capsule())
+            }
+            .padding(.top, 6)
+        }
+        .padding(28)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+        .background(backdrop.ignoresSafeArea())
     }
 }
