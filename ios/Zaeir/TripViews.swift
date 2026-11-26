@@ -128,6 +128,7 @@ struct TripView: View {
 
     private var toolsCards: some View {
         let tools: [(String, String, AnyView)] = [
+            ("Plan my day", "calendar", AnyView(PlanDayView())),
             ("Between cities", "arrow.left.and.right", AnyView(BetweenView())),
             ("Currency converter", "banknote", AnyView(ConverterView())),
             ("Trip budget", "chart.pie", AnyView(BudgetView())),
