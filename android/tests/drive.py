@@ -69,4 +69,5 @@ def back():
 
 exec(open("android/tests/steps.py").read())
 print("FAILS:", fails)
+open("shots-android/RESULT.txt","w").write("FAILS: "+repr(fails)+"\n")
 sys.exit(1 if fails else 0)
