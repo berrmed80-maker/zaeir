@@ -119,7 +119,7 @@ struct CityView: View {
 
     private var sightsTab: some View {
         VStack(spacing: 10) {
-            Text(tr("Open %s in your Maps app, or a single place from the Sights tab."))
+            Text(tr("Open %s in your Maps app, or a single place from the Sights tab.").replacingOccurrences(of: "%s", with: city.name))
                 .font(.system(size: 12))
                 .foregroundColor(.zGrey)
                 .padding(.horizontal, 20)
