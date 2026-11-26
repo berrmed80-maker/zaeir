@@ -576,6 +576,10 @@ struct AboutView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.zGrey)
                     .padding(.horizontal, 20)
+                Text(tr("Menus, buttons and city guides are translated (machine translation, not reviewed by a native speaker)."))
+                    .font(.system(size: 11.5))
+                    .foregroundColor(.zGrey)
+                    .padding(.horizontal, 20)
             }
             .padding(.vertical, 12)
         }
