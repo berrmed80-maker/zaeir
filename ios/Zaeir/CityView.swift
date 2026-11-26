@@ -6,7 +6,7 @@ import MapKit
 struct CityView: View {
     @EnvironmentObject var store: Store
     let city: City
-    @State private var tab = 0
+    @State private var tab = UserDefaults.standard.integer(forKey: "debugCityTab")
 
     private let tabs = ["What to see", "Where to stay", "Eat", "Safety", "Day trips", "Map"]
 
