@@ -1,11 +1,44 @@
-launch(); shot("00-welcome"); print(texts())
-tap("Get started"); shot("01-home"); print(texts())
-for t in ["Explore", "Trips", "Saved", "Guide", "Home"]:
-    tap(t, exact=True); shot("02-tab-" + t.lower())
-tap("Guide", exact=True); tap("Darija", required=False); shot("03-guide-darija")
-back(); tap("Home", exact=True)
-tap("Marrakech", required=False); shot("04-city"); back()
-# offline + relaunch
+
+def tools_item(name):
+    menu(); return tap(name)
+launch(); shot("00-welcome")
+tap("Get started"); shot("01-home")
+# Darija phrasebook (new)
+tap("Guide", exact=True); tap("Darija"); shot("10-phrasebook"); check("Salam")
+tap("Taxi", required=False); shot("11-phrasebook-taxi")
+tap_edit(0); typ("shukran"); shot("12-phrasebook-search"); check("Shukran")
+back(); tap("Home", exact=True, required=False)
+# Plan my day (new)
+tools_item("Plan my day"); shot("20-plan-form"); check("Plan my day")
+tap("Show"); shot("21-plan-result"); check("Day 1")
+scroll(); shot("22-plan-result-scrolled")
+back(); tap("Home", exact=True, required=False)
+# Trip budget (new)
+tools_item("Trip budget"); shot("30-budget-empty")
+tap_edit(2); typ("400"); adb("shell","input","keyevent","61"); typ("150"); adb("shell","input","keyevent","61"); typ("80"); adb("shell","input","keyevent","61"); typ("100")
+adb("shell","input","keyevent","111"); scroll(); shot("31-budget-filled"); 
+t = " ".join(texts()); print("BUDGET TEXT:", t[:400])
+# 5 days x (400 + 2*150 + 80 + 2*100) = 5*980 = 4900
+check("4900 MAD")
+back(); tap("Home", exact=True, required=False)
+tools_item("Currency converter"); shot("40-converter"); back(); tap("Home", exact=True, required=False)
+# City page: Safety + Eat (new blocks)
+tap("Explore", exact=True); shot("50-explore"); print(texts())
+tap("Marrakech"); shot("51-city-sights"); print(texts())
+tap("Safety", exact=True); scroll(); scroll(); shot("52-city-safety"); check("Fair prices")
+tap("Eat", exact=True); scroll(); scroll(); shot("53-city-eat"); check("Order in Darija")
+back(); tap("Home", exact=True, required=False)
+# Trips / Saved flows
+tap("Trips", exact=True); shot("60-trips"); print(texts())
+tap("Saved", exact=True); shot("61-saved")
+tap("Guide", exact=True); tap("Itineraries", required=False); shot("62-itineraries"); print(texts()); back()
+# Arabic layout
+menu(); tap("AR", exact=True, required=False); shot("70-ar-menu")
+adb("shell","input","tap","160","2141"); time.sleep(1.5); shot("71-ar-home")
+adb("shell","input","tap","916","2141"); time.sleep(1.5); shot("72-ar-guide")
+adb("shell","input","tap","540","900"); shot("73-ar-guide-first")
+# offline
 adb("shell", "cmd", "connectivity", "airplane-mode", "enable"); time.sleep(3)
-launch(); shot("05-offline-home"); check("Home")
+launch(); shot("80-offline-home")
+menu(); shot("81-offline-menu")
 adb("shell", "cmd", "connectivity", "airplane-mode", "disable")
