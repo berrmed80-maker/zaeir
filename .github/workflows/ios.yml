@@ -80,6 +80,19 @@ jobs:
           shot 6-home-ar 12
           xcrun simctl spawn booted defaults delete com.dalil.maroc welcomed
           shot 7-welcome-ar 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string en
+          xcrun simctl spawn booted defaults write com.dalil.maroc welcomed -bool true
+          xcrun simctl spawn booted defaults write com.dalil.maroc favs -array marrakech "p:marrakech:Koutoubia Mosque" "p:marrakech:Djemaa El-Fna"
+          xcrun simctl spawn booted defaults write com.dalil.maroc initialTab -int 3
+          shot 8-saved-hearts 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string marrakech
+          for CT in 0 1 2; do
+            xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -int $CT
+            shot 9-city-tab-$CT 12
+          done
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -int 1
+          shot 9-city-stay-ar 12
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
