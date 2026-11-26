@@ -109,6 +109,14 @@ jobs:
           xcrun simctl spawn booted defaults write com.dalil.maroc lang -string en
           xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string plan
           shot 12-plan-en 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string safety
+          shot 13b-safety-prices-en 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string darija
+          shot 14b-darija-order-en 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugScreen -string plan
+          shot 12b-plan-ar 12
+          xcrun simctl spawn booted defaults write com.dalil.maroc lang -string en
           xcrun simctl spawn booted defaults delete com.dalil.maroc debugScreen
           xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string marrakech
           xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 3
