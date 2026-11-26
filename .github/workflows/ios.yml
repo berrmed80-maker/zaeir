@@ -111,3 +111,4 @@ jobs:
             --notes "Unsigned IPA built by CI. Compile-only: never run on a device. To install: sideload with Sideloadly/AltStore using a free Apple ID (7-day expiry). Not signed, not App Store ready." \
             --latest=false
           gh release upload ios-dev shots/*.png --clobber
+# rebuild 1795713322
