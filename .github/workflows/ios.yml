@@ -53,28 +53,33 @@ jobs:
           sleep 5
           xcrun simctl install booted build-sim/Build/Products/Debug-iphonesimulator/Zaeir.app
           mkdir -p ../shots
-          xcrun simctl launch booted com.dalil.maroc
-          sleep 10
-          xcrun simctl io booted screenshot ../shots/0-welcome.png
-          xcrun simctl terminate booted com.dalil.maroc || true
+          shot() {
+            name="$1"; wait_s="$2"
+            xcrun simctl launch booted com.dalil.maroc
+            sleep "$wait_s"
+            xcrun simctl io booted screenshot "../shots/$name.png"
+            sz=$(stat -f%z "../shots/$name.png")
+            if [ "$sz" -lt 100000 ]; then
+              echo "retry $name (got $sz bytes)"
+              xcrun simctl terminate booted com.dalil.maroc || true
+              sleep 3
+              xcrun simctl launch booted com.dalil.maroc
+              sleep $((wait_s + 6))
+              xcrun simctl io booted screenshot "../shots/$name.png"
+            fi
+            xcrun simctl terminate booted com.dalil.maroc || true
+          }
+          shot 0-welcome-en 12
           xcrun simctl spawn booted defaults write com.dalil.maroc welcomed -bool true
           for T in 0 1 2 3 4; do
             xcrun simctl spawn booted defaults write com.dalil.maroc initialTab -int $T
-            xcrun simctl launch booted com.dalil.maroc
-            sleep 10
-            xcrun simctl io booted screenshot ../shots/tab-$T.png
-            xcrun simctl terminate booted com.dalil.maroc || true
+            shot tab-$T 10
           done
           xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
           xcrun simctl spawn booted defaults write com.dalil.maroc initialTab -int 0
-          xcrun simctl launch booted com.dalil.maroc
-          sleep 12
-          xcrun simctl io booted screenshot ../shots/6-home-ar.png
-          xcrun simctl terminate booted com.dalil.maroc || true
+          shot 6-home-ar 12
           xcrun simctl spawn booted defaults delete com.dalil.maroc welcomed
-          xcrun simctl launch booted com.dalil.maroc
-          sleep 10
-          xcrun simctl io booted screenshot ../shots/0-welcome.png
+          shot 7-welcome-ar 12
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
