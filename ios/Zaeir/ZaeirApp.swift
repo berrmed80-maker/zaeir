@@ -116,19 +116,25 @@ struct ZaeirApp: App {
 struct RootView: View {
     @EnvironmentObject var store: Store
     @State private var showWelcome = !UserDefaults.standard.bool(forKey: "welcomed")
+    @State private var selectedTab = UserDefaults.standard.integer(forKey: "initialTab")
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem { Label(tr("Home"), systemImage: "house.fill") }
+                .tag(0)
             ExploreView()
                 .tabItem { Label(tr("Explore"), systemImage: "magnifyingglass") }
+                .tag(1)
             TripView()
                 .tabItem { Label(tr("Trips"), systemImage: "map.fill") }
+                .tag(2)
             SavedView()
                 .tabItem { Label(tr("Saved"), systemImage: "heart.fill") }
+                .tag(3)
             GuideView()
                 .tabItem { Label(tr("Guide"), systemImage: "book.fill") }
+                .tag(4)
         }
         .tint(.zGreen)
         .environment(\.layoutDirection, store.lang == "ar" ? .rightToLeft : .leftToRight)
