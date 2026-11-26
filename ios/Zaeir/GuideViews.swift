@@ -96,7 +96,7 @@ struct GuideView: View {
         case "Packing": PackingView()
         case "Prices": PricesView()
         case "Tips": TipsView()
-        case "Darija": PhrasesView()
+        case "Darija": PhrasebookView()
         case "Emergency": EmergencyView()
         case "Scams": ScamsView()
         case "Activities": ActivitiesView()
