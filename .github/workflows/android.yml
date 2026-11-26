@@ -19,8 +19,9 @@ jobs:
       - name: Build unsigned-aligned APK with the official SDK tools
         run: |
           set -e
-          yes | sdkmanager --licenses >/dev/null 2>&1 || true
-          sdkmanager "platforms;android-34" "build-tools;34.0.0" >/dev/null
+          SDKM=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
+          ls $ANDROID_HOME/build-tools $ANDROID_HOME/platforms
+          $SDKM "platforms;android-34" "build-tools;34.0.0" 
           BT=$ANDROID_HOME/build-tools/34.0.0; JAR=$ANDROID_HOME/platforms/android-34/android.jar
           mkdir -p b/res/mipmap-xxxhdpi b/assets/img b/cls b/gen
           base64 -d android/icon.b64 > b/res/mipmap-xxxhdpi/ic_launcher.png
@@ -64,5 +65,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release delete android-dev --yes --cleanup-tag 2>/dev/null || true
-          gh release create android-dev zaeir-unsigned-aligned.apk --title "Zaeir Android CI build" --notes "Built and emulator-tested by CI (API 33 x86_64, debug-signed test copy). The attached APK is the unsigned build; it is signed separately for release." --latest=false
+          gh release create android-dev $(ls zaeir-unsigned-aligned.apk 2>/dev/null) --title "Zaeir Android CI build" --notes "Built and emulator-tested by CI (API 33 x86_64, debug-signed test copy). The attached APK is the unsigned build; it is signed separately for release." --latest=false
           gh release upload android-dev shots-android/* --clobber || true
