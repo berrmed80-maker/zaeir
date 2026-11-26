@@ -181,7 +181,7 @@ struct WelcomeView: View {
     private let icons = ["calendar", "fork.knife", "exclamationmark.shield.fill", "wifi.slash"]
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             if let ui = bundleImage("marrakech") {
                 Image(uiImage: ui).resizable().scaledToFill().ignoresSafeArea()
                 LinearGradient(colors: [.black.opacity(0.75), .black.opacity(0.25)],
@@ -190,6 +190,7 @@ struct WelcomeView: View {
                 LinearGradient(colors: [.zDark, .zTerra], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
             }
             VStack(alignment: .leading, spacing: 14) {
+                Spacer(minLength: 0)
                 Text(tr("WELCOME TO"))
                     .font(.system(size: 13, weight: .semibold))
                     .tracking(3)
@@ -222,6 +223,7 @@ struct WelcomeView: View {
                 }
                 .padding(.top, 6)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             .padding(28)
         }
     }
