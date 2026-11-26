@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'android/**'
+      - '!android/photos/**'
       - 'ios/b64/**'
       - '.github/workflows/android.yml'
   workflow_dispatch:
@@ -31,6 +32,11 @@ jobs:
             [ "$base" = "icon-1024.png" ] && continue
             cat ios/b64/$base.b64.* | base64 -d > b/assets/img/$base.jpg
           done
+          if [ -d android/photos ]; then
+            for base in $(ls android/photos | sed 's/\.b64\.[0-9]*$//' | sort -u); do
+              cat android/photos/$base.b64.* | base64 -d > b/assets/img/$base.jpg
+            done
+          fi
           ls b/assets/img | wc -l
           $BT/aapt2 compile --dir b/res -o b/res.zip
           $BT/aapt2 link -o b/base.apk -I $JAR --manifest android/AndroidManifest.xml -R b/res.zip --java b/gen -A b/assets --min-sdk-version 21 --target-sdk-version 33
