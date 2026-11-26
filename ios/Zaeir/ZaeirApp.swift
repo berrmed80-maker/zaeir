@@ -138,6 +138,12 @@ struct RootView: View {
         }
         .tint(.zGreen)
         .environment(\.layoutDirection, store.lang == "ar" ? .rightToLeft : .leftToRight)
+        .overlay {
+            if let id = UserDefaults.standard.string(forKey: "debugCity"), !id.isEmpty, let c = store.city(id) {
+                NavigationStack { CityView(city: c) }
+                    .background(Color.zBG.ignoresSafeArea())
+            }
+        }
         .fullScreenCover(isPresented: $showWelcome) {
             WelcomeView(show: $showWelcome)
         }
@@ -196,12 +202,14 @@ struct WelcomeView: View {
         }
     }
 
+    private var isAR: Bool { (UserDefaults.standard.string(forKey: "lang") ?? "en") == "ar" }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Spacer(minLength: 0)
             Text(tr("WELCOME TO"))
                 .font(.system(size: 13, weight: .semibold))
-                .tracking(3)
+                .tracking(isAR ? 0 : 3)
                 .foregroundColor(.white.opacity(0.8))
             Text("Zaeir")
                 .font(.system(size: 54, weight: .bold, design: .rounded))
@@ -237,5 +245,6 @@ struct WelcomeView: View {
         .padding(.bottom, 12)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         .background(backdrop.ignoresSafeArea())
+        .environment(\.layoutDirection, isAR ? .rightToLeft : .leftToRight)
     }
 }
