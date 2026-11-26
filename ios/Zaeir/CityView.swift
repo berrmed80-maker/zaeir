@@ -216,7 +216,7 @@ struct CityView: View {
         kindList(city.food, kinder: foodKind, filt: $eatFilt, isStay: false)
     }
 
-    private func kindList(_ items: [String], kinder: (String) -> String, filt: Binding<String>, isStay: Bool) -> some View {
+    private func kindList(_ items: [String], kinder: @escaping (String) -> String, filt: Binding<String>, isStay: Bool) -> some View {
         var seen = Set<String>()
         var kinds = ["All"]
         for k in items.map(kinder) where !seen.contains(k) {
