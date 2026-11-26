@@ -320,16 +320,54 @@ struct SavedView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Hero(title: tr("Saved"), subtitle: tr("Your favourite cities"), height: 120)
                     let saved = DB.data.cities.filter { store.favs.contains($0.id) }
-                    if saved.isEmpty {
+                    let places: [(City, Sight)] = DB.data.cities.flatMap { c in
+                        c.sights.filter { store.favs.contains("p:\(c.id):\($0.n)") }.map { (c, $0) }
+                    }
+                    if saved.isEmpty && places.isEmpty {
                         Card {
-                            Text(tr("Nothing saved yet. Tap the heart on a city to keep it here."))
+                            Text(tr("Tap the heart on a city or a place to keep it here."))
                                 .font(.system(size: 14.5))
                                 .foregroundColor(.zGrey)
                         }
                     }
-                    ForEach(saved) { c in
-                        NavigationLink { CityView(city: c) } label: { CityRow(city: c) }
+                    if !saved.isEmpty {
+                        SectionTitle(text: "Cities")
+                        ForEach(saved) { c in
+                            NavigationLink { CityView(city: c) } label: { CityRow(city: c) }
+                                .buttonStyle(.plain)
+                        }
+                    }
+                    if !places.isEmpty {
+                        SectionTitle(text: "Places")
+                        ForEach(Array(places.enumerated()), id: \.offset) { _, p in
+                            NavigationLink { CityView(city: p.0) } label: {
+                                Card {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "mappin.circle.fill")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(.zTerra)
+                                        VStack(alignment: .leading, spacing: 3) {
+                                            Text(tr(p.1.n))
+                                                .font(.system(size: 15, weight: .bold))
+                                                .foregroundColor(.zInk)
+                                            Text(p.0.name + " \u{00B7} " + tr(p.1.tag))
+                                                .font(.system(size: 12.5))
+                                                .foregroundColor(.zGrey)
+                                        }
+                                        Spacer(minLength: 4)
+                                        Button {
+                                            store.toggleFav("p:\(p.0.id):\(p.1.n)")
+                                        } label: {
+                                            Image(systemName: "heart.fill")
+                                                .foregroundColor(.zTerra)
+                                                .padding(8)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                }
+                            }
                             .buttonStyle(.plain)
+                        }
                     }
                 }
                 .padding(.vertical, 12)
