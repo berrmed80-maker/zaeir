@@ -396,11 +396,11 @@ struct PlanDayView: View {
                         .padding(.horizontal, 16)
                 } else {
                     if plan.count < days {
-                        Text(tf("Not enough sights for more days. Showing %s.", "\(plan.count)"))
+                        Text(ts("Not enough sights for more days. Showing %s.", "\(plan.count)"))
                             .font(.system(size: 12.5)).foregroundColor(.zTerra).padding(.horizontal, 16)
                     }
                     ForEach(Array(plan.enumerated()), id: \.offset) { i, list in
-                        SectionTitle(text: tf("Day %s", "\(i + 1)"))
+                        SectionTitle(text: ts("Day %s", "\(i + 1)"))
                         Card {
                             ForEach(list) { s in
                                 VStack(alignment: .leading, spacing: 2) {
@@ -416,7 +416,7 @@ struct PlanDayView: View {
                                 }
                                 .padding(.vertical, 3)
                             }
-                            Text(tf("About %s of sightseeing, without travel time", hm(list.reduce(0) { $0 + $1.min })))
+                            Text(ts("About %s of sightseeing, without travel time", hm(list.reduce(0) { $0 + $1.min })))
                                 .font(.system(size: 12)).foregroundColor(.zGrey)
                         }
                         .padding(.horizontal, 16)
