@@ -145,6 +145,7 @@ struct RootView: View {
                     switch scr {
                     case "phrasebook": PhrasebookView()
                     case "budget": BudgetView()
+                    case "plan": PlanDayView()
                     default: EmptyView()
                     }
                 }
