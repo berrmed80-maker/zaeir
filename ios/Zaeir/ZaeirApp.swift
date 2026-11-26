@@ -42,6 +42,14 @@ func tr(_ s: String) -> String {
     return s
 }
 
+func ts(_ format: String, _ args: String...) -> String {
+    var s = tr(format)
+    for a in args {
+        if let r = s.range(of: "%s") { s.replaceSubrange(r, with: a) }
+    }
+    return s
+}
+
 func tf(_ format: String, _ args: CVarArg...) -> String {
     String(format: tr(format), arguments: args)
 }
@@ -146,6 +154,8 @@ struct RootView: View {
                     case "phrasebook": PhrasebookView()
                     case "budget": BudgetView()
                     case "plan": PlanDayView()
+                    case "safety": ScrollView { SafetyExtrasCard(city: DB.data.cities[0]).padding(16) }.background(Color.zBG.ignoresSafeArea())
+                    case "darija": ScrollView { DarijaOrderCard().padding(16) }.background(Color.zBG.ignoresSafeArea())
                     default: EmptyView()
                     }
                 }
