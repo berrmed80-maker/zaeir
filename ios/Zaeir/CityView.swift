@@ -109,8 +109,8 @@ struct CityView: View {
     private var tabContent: some View {
         switch tab {
         case 0: sightsTab
-        case 1: stringsCard(city.stay, icon: "bed.double.fill")
-        case 2: stringsCard(city.food, icon: "fork.knife")
+        case 1: stayTab
+        case 2: eatTab
         case 3: stringsCard(city.scams, icon: "exclamationmark.triangle.fill", tint: .zTerra)
         case 4: stringsCard(city.daytrips, icon: "bus.fill")
         default: mapTab
@@ -134,10 +134,22 @@ struct CityView: View {
                                 if s.p == 1 {
                                     Chip(text: tr("Must see"), tint: .zGold)
                                 }
+                                Spacer(minLength: 4)
+                                let favKey = "p:\(city.id):\(s.n)"
+                                Button {
+                                    store.toggleFav(favKey)
+                                } label: {
+                                    Image(systemName: store.favs.contains(favKey) ? "heart.fill" : "heart")
+                                        .foregroundColor(store.favs.contains(favKey) ? .zTerra : .zGrey)
+                                }
+                                .buttonStyle(.plain)
                             }
                             HStack(spacing: 6) {
                                 Chip(text: tr(s.tag), tint: .zGreen)
                                 Chip(text: tf("%d min", s.min), tint: .zGrey)
+                                if !s.v {
+                                    Chip(text: tr("unverified"), tint: .zTerra)
+                                }
                             }
                             Text(tr(s.note))
                                 .font(.system(size: 13.5))
@@ -169,6 +181,134 @@ struct CityView: View {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private func stayKind(_ t: String) -> String {
+        let l = t.lowercased()
+        if l.contains("riad") { return "Riad" }
+        if l.contains("hostel") { return "Hostel" }
+        if l.contains("apartment") { return "Apartment" }
+        if l.contains("camp") || l.contains("kasbah") || l.contains("guesthouse") || l.contains("auberge") || l.contains("dar ") { return "Camp / guesthouse" }
+        if l.contains("hotel") || l.contains("resort") { return "Hotel" }
+        return "Other"
+    }
+
+    private func foodKind(_ t: String) -> String {
+        let l = t.lowercased()
+        if l.contains("vegetarian") || l.contains("vegan") { return "Vegetarian" }
+        if l.contains("stall") || l.contains("street") || l.contains("sandwich") { return "Street food" }
+        if l.contains("cafe") || l.contains("caf\u{e9}") || l.contains("coffee") || l.contains("tea ") || l.contains("juice") { return "Cafes" }
+        if l.contains("restaurant") || l.contains("grill") || l.contains("seafood") || l.contains("fish") || l.contains("eat at") || l.contains("chez ") { return "Restaurants" }
+        return "Dishes"
+    }
+
+    @State private var stayFilt = "All"
+    @State private var eatFilt = "All"
+
+    private var stayTab: some View {
+        kindList(city.stay, kinder: stayKind, filt: $stayFilt, isStay: true)
+    }
+
+    private var eatTab: some View {
+        kindList(city.food, kinder: foodKind, filt: $eatFilt, isStay: false)
+    }
+
+    private func kindList(_ items: [String], kinder: (String) -> String, filt: Binding<String>, isStay: Bool) -> some View {
+        var seen = Set<String>()
+        var kinds = ["All"]
+        for k in items.map(kinder) where !seen.contains(k) {
+            seen.insert(k)
+            kinds.append(k)
+        }
+        return VStack(spacing: 10) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(kinds, id: \.self) { k in
+                        Button { filt.wrappedValue = k } label: {
+                            Text(tr(k))
+                                .font(.system(size: 12.5, weight: .semibold))
+                                .foregroundColor(filt.wrappedValue == k ? .white : .zInk)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 7)
+                                .background(filt.wrappedValue == k ? Color.zGreen : Color.white)
+                                .clipShape(Capsule())
+                                .overlay(Capsule().stroke(Color.zLine, lineWidth: filt.wrappedValue == k ? 0 : 1))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            if isStay {
+                bookingCard
+            }
+            ForEach(items.filter { filt.wrappedValue == "All" || kinder($0) == filt.wrappedValue }, id: \.self) { t in
+                Card {
+                    HStack(alignment: .top, spacing: 12) {
+                        Image(systemName: isStay ? "bed.double.fill" : "fork.knife")
+                            .font(.system(size: 15))
+                            .foregroundColor(.zGreen)
+                            .padding(.top, 2)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Chip(text: tr(kinder(t)), tint: isStay ? .zGreen : .zGold)
+                            Text(tr(t))
+                                .font(.system(size: 14.5))
+                                .foregroundColor(.zInk)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text(tr("Price: not included (no verified data)"))
+                                .font(.system(size: 11.5))
+                                .foregroundColor(.zGrey)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private var bookingCard: some View {
+        Card {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(tr("Find a place to stay"))
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.zInk)
+                Text(tr("Opens the website in your browser. Prices and owner contact details are shown there, not copied into this app."))
+                    .font(.system(size: 12))
+                    .foregroundColor(.zGrey)
+                    .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 8) {
+                    let q = city.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? city.name
+                    bookingLink("Booking.com", "https://www.booking.com/searchresults.html?ss=\(q)%2C+Morocco", Color(hex: 0x003B95))
+                    bookingLink("Airbnb", "https://www.airbnb.com/s/\(q)--Morocco/homes", Color(hex: 0xFF385C))
+                    if let url = mapsURL(query: "hotels in \(city.name), Morocco") {
+                        Link(destination: url) {
+                            Text(tr("Maps"))
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 9)
+                                .background(Color.zGreen)
+                                .clipShape(Capsule())
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func bookingLink(_ label: String, _ urlString: String, _ color: Color) -> some View {
+        Group {
+            if let url = URL(string: urlString) {
+                Link(destination: url) {
+                    Text(label)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 9)
+                        .background(color)
+                        .clipShape(Capsule())
                 }
             }
         }
