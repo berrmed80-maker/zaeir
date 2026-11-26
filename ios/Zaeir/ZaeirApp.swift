@@ -38,6 +38,7 @@ func tr(_ s: String) -> String {
     let lang = UserDefaults.standard.string(forKey: "lang") ?? "en"
     if lang == "en" { return s }
     if let t = I18n.dict[lang]?[s], !t.isEmpty { return t }
+    if let t = Extras.data.i18n[lang]?[s], !t.isEmpty { return t }
     return s
 }
 
@@ -138,6 +139,18 @@ struct RootView: View {
         }
         .tint(.zGreen)
         .environment(\.layoutDirection, store.lang == "ar" ? .rightToLeft : .leftToRight)
+        .overlay {
+            if let scr = UserDefaults.standard.string(forKey: "debugScreen"), !scr.isEmpty {
+                NavigationStack {
+                    switch scr {
+                    case "phrasebook": PhrasebookView()
+                    case "budget": BudgetView()
+                    default: EmptyView()
+                    }
+                }
+                .background(Color.zBG.ignoresSafeArea())
+            }
+        }
         .overlay {
             if let id = UserDefaults.standard.string(forKey: "debugCity"), !id.isEmpty, let c = store.city(id) {
                 NavigationStack { CityView(city: c) }
