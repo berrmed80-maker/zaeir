@@ -34,8 +34,8 @@ jobs:
           ls b/assets/img | wc -l
           $BT/aapt2 compile --dir b/res -o b/res.zip
           $BT/aapt2 link -o b/base.apk -I $JAR --manifest android/AndroidManifest.xml -R b/res.zip --java b/gen -A b/assets --min-sdk-version 21 --target-sdk-version 33
-          javac --release 8 -cp $JAR -d b/cls $(find android/src b/gen -name '*.java') 2>&1 | grep -v '^Note:' || true
-          $BT/d8 --lib $JAR --min-api 21 --output b $(find b/cls -name '*.class')
+          javac --release 8 -cp $JAR -d b/cls $(find android/src -name '*.java') 2>&1 | grep -v '^Note:' || true
+          ok=0; for v in 36.0.0 35.0.1 35.0.0 34.0.0; do if $ANDROID_HOME/build-tools/$v/d8 --lib $JAR --min-api 21 --output b $(find b/cls -name '*.class'); then echo "d8 $v ok"; ok=1; break; fi; done; [ $ok = 1 ]
           cd b && zip -q -j base.apk classes.dex && cd ..
           $BT/zipalign -f -p 4 b/base.apk b/aligned.apk
           cp b/aligned.apk zaeir-unsigned-aligned.apk
