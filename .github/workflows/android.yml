@@ -19,11 +19,10 @@ jobs:
       - name: Build unsigned-aligned APK with the official SDK tools
         run: |
           set -e
-          SDKM=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
-          ls $ANDROID_HOME/build-tools $ANDROID_HOME/platforms
-          $SDKM "platforms;android-34" "build-tools;34.0.0" 
           BT=$ANDROID_HOME/build-tools/34.0.0; JAR=$ANDROID_HOME/platforms/android-34/android.jar
           mkdir -p b/res/mipmap-xxxhdpi b/assets/img b/cls b/gen
+          exec 3>&1; exec >b/log.txt 2>&1
+          trap 'echo "::error::$(tail -c 900 b/log.txt | tr "\n" "|")" >&3' ERR
           base64 -d android/icon.b64 > b/res/mipmap-xxxhdpi/ic_launcher.png
           cp android/assets/data.json android/assets/extras.json b/assets/
           python3 -c "import json,glob;d={};[d.update(json.load(open(f))) for f in sorted(glob.glob('android/assets/i18n_*.json'))];json.dump(d,open('b/assets/i18n.json','w'),ensure_ascii=False)"
@@ -43,7 +42,7 @@ jobs:
           keytool -genkeypair -keystore b/test.jks -storepass testtest -keypass testtest -alias t -keyalg RSA -keysize 2048 -validity 30 -dname "CN=ci-test" >/dev/null 2>&1
           $BT/apksigner sign --ks b/test.jks --ks-pass pass:testtest --out b/test.apk b/aligned.apk
           $BT/apksigner verify b/test.apk && echo signed-ok
-          sha256sum zaeir-unsigned-aligned.apk
+          sha256sum zaeir-unsigned-aligned.apk >&3
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
