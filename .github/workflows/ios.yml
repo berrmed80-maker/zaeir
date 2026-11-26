@@ -54,23 +54,27 @@ jobs:
           xcrun simctl install booted build-sim/Build/Products/Debug-iphonesimulator/Zaeir.app
           mkdir -p ../shots
           xcrun simctl launch booted com.dalil.maroc
-          sleep 8
-          xcrun simctl io booted screenshot ../shots/1-welcome.png
+          sleep 10
+          xcrun simctl io booted screenshot ../shots/0-welcome.png
           xcrun simctl terminate booted com.dalil.maroc || true
           xcrun simctl spawn booted defaults write com.dalil.maroc welcomed -bool true
-          xcrun simctl launch booted com.dalil.maroc
-          sleep 8
-          xcrun simctl io booted screenshot ../shots/2-home.png
-          xcrun simctl terminate booted com.dalil.maroc || true
+          for T in 0 1 2 3 4; do
+            xcrun simctl spawn booted defaults write com.dalil.maroc initialTab -int $T
+            xcrun simctl launch booted com.dalil.maroc
+            sleep 10
+            xcrun simctl io booted screenshot ../shots/tab-$T.png
+            xcrun simctl terminate booted com.dalil.maroc || true
+          done
           xcrun simctl spawn booted defaults write com.dalil.maroc lang -string ar
+          xcrun simctl spawn booted defaults write com.dalil.maroc initialTab -int 0
           xcrun simctl launch booted com.dalil.maroc
-          sleep 8
-          xcrun simctl io booted screenshot ../shots/3-home-ar.png
+          sleep 12
+          xcrun simctl io booted screenshot ../shots/6-home-ar.png
           xcrun simctl terminate booted com.dalil.maroc || true
           xcrun simctl spawn booted defaults delete com.dalil.maroc welcomed
           xcrun simctl launch booted com.dalil.maroc
-          sleep 8
-          xcrun simctl io booted screenshot ../shots/1-welcome.png
+          sleep 10
+          xcrun simctl io booted screenshot ../shots/0-welcome.png
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
@@ -88,4 +92,4 @@ jobs:
             --title "Zaeir iOS - unsigned compile-only build" \
             --notes "Unsigned IPA built by CI. Compile-only: never run on a device. To install: sideload with Sideloadly/AltStore using a free Apple ID (7-day expiry). Not signed, not App Store ready." \
             --latest=false
-          gh release upload ios-dev shots/1-welcome.png shots/2-home.png shots/3-home-ar.png --clobber
+          gh release upload ios-dev shots/*.png --clobber
