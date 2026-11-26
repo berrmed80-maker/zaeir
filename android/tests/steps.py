@@ -2,7 +2,12 @@
 def tools_item(name):
     menu(); return tap(name)
 def home():
+    f = adb("shell","dumpsys","window")
+    if PKG not in "".join(l for l in f.splitlines() if "mCurrentFocus" in l):
+        print("APP NOT IN FOREGROUND, relaunching"); fails.append("app left foreground before: " + str(len(shots_done)))
+        adb("shell","monkey","-p",PKG,"-c","android.intent.category.LAUNCHER","1"); time.sleep(4)
     adb("shell","input","tap","160","2141"); time.sleep(1.5)
+shots_done=[]
 launch(); shot("00-welcome")
 tap("Get started"); shot("01-home")
 tap("Guide", exact=True); tap("Darija"); shot("10-phrasebook"); check("Salam")
@@ -26,21 +31,21 @@ tap("+ Trip", required=False); shot("51c-added-to-trip")
 tap("Safety", exact=True); scroll(); scroll(); shot("52-city-safety"); check("Fair prices")
 scroll(); scroll(); scroll(); shot("52b-city-safety-end")
 adb("shell","input","swipe","540","700","540","2000","300"); adb("shell","input","swipe","540","700","540","2000","300"); adb("shell","input","swipe","540","700","540","2000","300"); adb("shell","input","swipe","540","700","540","2000","300")
-tap("Eat", exact=True); shot("53a-city-eat"); scroll(); scroll(); scroll(); shot("53-city-eat"); check("Order in Darija")
+tap("Eat", exact=True); shot("53a-city-eat"); scroll(); scroll(); scroll(); scroll(); shot("53-city-eat"); check("Order in Darija")
 back(); home()
 tap("Trips", exact=True); shot("60-trips"); print(texts())
 tap("Saved", exact=True); shot("61-saved")
 tap("Guide", exact=True); tap("Itineraries", required=False); tap("Add to my trip", required=False); shot("62-itineraries")
 back(); adb("shell","input","tap","540","2141"); time.sleep(1.5); shot("63-trips-after-itinerary")
 # Arabic layout
-menu(); tap("AR", exact=True, required=False); shot("70-ar-menu")
-back(); home(); shot("71-ar-home")
+menu(); tap("AR", exact=True); shot("70-ar-menu")
+adb("shell","input","keyevent","4"); time.sleep(1); home(); shot("71-ar-home")
 adb("shell","input","tap","916","2141"); time.sleep(1.5); shot("72-ar-guide")
 tap("الدارجة", required=False); shot("73-ar-phrasebook"); check("Salam")
 back(); home()
 tools_item("خطط ليومي"); tap("عرض"); shot("74-ar-plan")
 back(); home()
-adb("shell","input","tap","348","2141"); time.sleep(1.5); tap("مراكش"); tap("الأمان", required=False); scroll(); scroll(); shot("75-ar-city-safety")
+adb("shell","input","tap","348","2141"); time.sleep(1.5); tap("مراكش", required=False) or tap("Marrakech", required=False); tap("الأمان"); scroll(); scroll(); shot("75-ar-city-safety")
 back(); home()
 # offline
 adb("shell", "cmd", "connectivity", "airplane-mode", "enable"); time.sleep(3)
