@@ -18,7 +18,7 @@ def nodes():
     r = dump(); out = []
     if r is None: return out
     for n in r.iter("node"):
-        t = (n.get("text") or "") or (n.get("content-desc") or "")
+        t = (n.get("text") or "") or (n.get("content-desc") or "") or ("<edit>" if n.get("class","").endswith("EditText") else "")
         m = re.findall(r"\d+", n.get("bounds") or "")
         if len(m) == 4:
             x1, y1, x2, y2 = map(int, m)
@@ -44,6 +44,23 @@ def check(label):
     ok = any(label.lower() in t.lower() for t in texts())
     print(("OK   " if ok else "FAIL ") + "visible: " + label)
     if not ok: fails.append("not visible: " + label)
+def edit_taps(i=0):
+    es = [n for n in nodes() if n[0] in ("<edit>",) or False]
+    return es
+def tap_edit(i=0):
+    r = dump(); out = []
+    if r is None: return False
+    for n in r.iter("node"):
+        if n.get("class","").endswith("EditText"):
+            m = re.findall(r"\d+", n.get("bounds") or ""); x1,y1,x2,y2 = map(int, m); out.append(((x1+x2)//2,(y1+y2)//2))
+    if len(out) > i:
+        adb("shell","input","tap",str(out[i][0]),str(out[i][1])); time.sleep(1); return True
+    fails.append("no EditText %d" % i); return False
+def typ(s):
+    adb("shell","input","text",s); time.sleep(1)
+def menu():
+    if not tap("Menu", required=False):
+        adb("shell","input","tap","988","197"); time.sleep(1.5)
 def launch():
     adb("shell", "am", "force-stop", PKG)
     adb("shell", "monkey", "-p", PKG, "-c", "android.intent.category.LAUNCHER", "1"); time.sleep(5)
