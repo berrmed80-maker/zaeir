@@ -52,9 +52,9 @@ home(); tap("Explore", exact=True); tap("Marrakech"); scroll(); scroll(); scroll
 scroll(); scroll(); scroll(); scroll(); scroll(); scroll(); shot("91b-marrakech-new-sights-more")
 back(); home()
 for nm,sn in [("Rissani","92-rissani"),("Volubilis","93-volubilis"),("Mirleft","94-mirleft"),("Dades Gorges","95-dades"),("Toubkal National Park","96-toubkal")]:
-    tap("Home", exact=True, required=False); tap_edit(0); typ(nm); time.sleep(1); shot(sn+"-search")
-    tap(nm, required=False); time.sleep(1); shot(sn); 
-    back(); home()
+    tap("Home", exact=True, required=False); tap("Search cities and places", required=False); tap_edit(0); typ(nm.replace(" ","%s")); time.sleep(1); shot(sn+"-search")
+    tap(nm, required=False); time.sleep(1); shot(sn); scroll(); shot(sn+"-b")
+    back(); back(); home()
 # offline
 adb("shell", "cmd", "connectivity", "airplane-mode", "enable"); time.sleep(3)
 launch(); shot("80-offline-home")
