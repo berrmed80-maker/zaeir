@@ -123,6 +123,30 @@ jobs:
           shot 13-safety-en 14
           xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 2
           shot 14-eat-darija-en 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string rissani
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 20-rissani-sights 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string volubilis
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 21-volubilis-sights 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string mirleft
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 22-mirleft-sights 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string mirleft
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 1
+          shot 23-mirleft-stay 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string mhamid
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 1
+          shot 24-mhamid-stay 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string dades-gorges
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 25-dades-sights 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string toubkal
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 26-toubkal-sights 14
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCity -string ouarzazate
+          xcrun simctl spawn booted defaults write com.dalil.maroc debugCityTab -integer 0
+          shot 27-ouarzazate-sights 14
       - uses: actions/upload-artifact@v4
         with:
           name: zaeir-ios-unsigned-ipa
@@ -143,3 +167,5 @@ jobs:
           gh release upload ios-dev shots/*.png --clobber
 # rebuild 1795713322
 # rebuild 1795721824
+
+# rebuild v6.6.1 captures
