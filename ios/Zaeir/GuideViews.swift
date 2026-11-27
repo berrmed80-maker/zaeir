@@ -572,7 +572,7 @@ struct AboutView: View {
                         .font(.system(size: 13.5))
                         .foregroundColor(.zGrey)
                 }
-                Text("Zaeir 6.5 \u{00B7} " + tr("Data built") + " " + DB.data.built)
+                Text("Zaeir 6.6 \u{00B7} " + tr("Data built") + " " + DB.data.built)
                     .font(.system(size: 12))
                     .foregroundColor(.zGrey)
                     .padding(.horizontal, 20)
