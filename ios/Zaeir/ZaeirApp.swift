@@ -55,7 +55,7 @@ func tf(_ format: String, _ args: CVarArg...) -> String {
         if format == "%d days" { return tr("1 day") }
         if format == "%d places" { return tr("1 place") }
     }
-    String(format: tr(format), arguments: args)
+    return String(format: tr(format), arguments: args)
 }
 
 // MARK: - Store
