@@ -13,7 +13,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dalil.maroc
         PRODUCT_NAME: Zaeir
-        MARKETING_VERSION: "6.5"
+        MARKETING_VERSION: "6.6"
         CURRENT_PROJECT_VERSION: "1"
         GENERATE_INFOPLIST_FILE: YES
         SWIFT_VERSION: "5.9"
