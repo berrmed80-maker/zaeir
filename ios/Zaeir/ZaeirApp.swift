@@ -51,6 +51,10 @@ func ts(_ format: String, _ args: String...) -> String {
 }
 
 func tf(_ format: String, _ args: CVarArg...) -> String {
+    if args.count == 1, let n = args[0] as? Int, n == 1 {
+        if format == "%d days" { return tr("1 day") }
+        if format == "%d places" { return tr("1 place") }
+    }
     String(format: tr(format), arguments: args)
 }
 
